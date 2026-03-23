@@ -1,1 +1,31 @@
+name: Build Amadeus EXE
 
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: コード取得
+      uses: actions/checkout@v3
+
+    - name: Python準備
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.11"
+
+    - name: ライブラリインストール
+      run: |
+        pip install pyinstaller
+        pip install PySide6
+
+    - name: EXE化
+      run: pyinstaller --onefile --windowed main.py
+
+    - name: 保存
+      uses: actions/upload-artifact@v3
+      with:
+        name: AmadeusBrowser
+        path: dist/main.exe
