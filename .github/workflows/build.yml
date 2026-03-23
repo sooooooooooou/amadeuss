@@ -25,7 +25,7 @@ jobs:
       run: pyinstaller --onefile --windowed main.py
 
     - name: 保存
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: AmadeusBrowser
         path: dist/main.exe
